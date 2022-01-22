@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "8a918914-a6fe-4b7d-a676-08df9c74b6ef": {
+      "ProjectGuid": "8a918914-a6fe-4b7d-a676-08df9c74b6ef",
+      "DisplayName": "Tetris",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
