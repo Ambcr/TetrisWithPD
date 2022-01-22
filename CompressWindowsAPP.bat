@@ -1,1 +1,1 @@
-rar a .\WindowsCompress.rar .\Release\* .\arial.ttf 
+rar a .\WindowsAPP.rar .\Release
