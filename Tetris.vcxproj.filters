@@ -21,15 +21,12 @@
     <ClCompile Include="LOG_UTILS.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TetrisAI.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LOG_UTILS.h">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="TetrisAI.h">
+    <ClInclude Include="TetrisAIInterface.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #include "SFML/Graphics.hpp"
 #include "LOG_UTILS.h"
-#include "TetrisAI.h"
+#include "TetrisAIInterface.h"
 #include <time.h>
 using namespace sf;
 //得分
@@ -164,15 +164,28 @@ int main()
     int dx=0; bool rotate=0; int colorNum=rand()%8;//定义方块的x坐标，旋转，还有颜色的index
     float timer=0,delay=0.3; 
     int blocktype = rand() % 7;//随机方块类型
-    blocktype = 0;
     tetris_type = blocktype;
     for (int i = 0; i < 4; i++)//根据方块类型的数据结构转换每个方格的具体坐标
     {
         a[i].x = figures[blocktype][i] % 2+4;
         a[i].y = figures[blocktype][i] / 2;
     }
+    auto tetrishandle = LoadLibrary(L"TetrisAI.dll");
+    TetrisAIInterface* tetrisai = nullptr;
+    if (tetrishandle)
+    {
+        typedef TetrisAIInterface* (CALLBACK* DllFunc)(int, int);
 
-    TetrisAI* tetrisai = TetrisAI::GetTetrisAIObject(10, 20);
+        DllFunc CreateObject = (DllFunc)GetProcAddress(tetrishandle,"GetTetrisAIObject");
+        
+        tetrisai= CreateObject(10,20);
+        //TetrisAI* a = new TetrisAI(10,20);
+        LOG(LOG_FATAL, "TetrisAIVersion:" + std::to_string((int)tetrisai));
+        LOG(LOG_FATAL, "TetrisAIVersion:" + tetrisai->GetAIVersion());
+        //LOG(LOG_FATAL, "SUCCESS TO LOAD LIBRARY TetrisAI.dll code:" + std::to_string((int)tetrishandle));
+    }
+    else LOG(LOG_FATAL,"FIALED TO LOAD LIBRARY TetrisAI.dll code:" + std::to_string((int)tetrishandle));
+    //TetrisAI* tetrisai = TetrisAI::GetTetrisAIObject(10, 20);
 
     Clock clock;
     LOG(LOG_INFO, "Tetris game start");
